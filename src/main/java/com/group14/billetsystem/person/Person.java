@@ -1,9 +1,10 @@
 package com.group14.billetsystem.person;
 
+import com.group14.billetsystem.person.discounts.Discount;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public class Person {
     private final UUID id;
@@ -12,6 +13,8 @@ public class Person {
     private final LocalDate birthdate;
     private Email email;
     private Status status;
+
+    private final Set<Discount> discounts = new HashSet<>();
 
     public Person(String name, String surname, LocalDate birthdate, Email email, Status status) {
         this.id = UUID.randomUUID();
@@ -52,6 +55,14 @@ public class Person {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public boolean addDiscount(Discount discount){
+        return discounts.add(discount);
+    }
+
+    public Set<Discount> getDiscounts(){
+        return Collections.unmodifiableSet(discounts);
     }
 
     public static Optional<Person> createPerson(String name, String surname, LocalDate birthdate, String email, Status status) {
