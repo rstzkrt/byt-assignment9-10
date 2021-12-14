@@ -1,3 +1,5 @@
+package Devices;
+
 public class BilletDevice {
     private int id;
 
