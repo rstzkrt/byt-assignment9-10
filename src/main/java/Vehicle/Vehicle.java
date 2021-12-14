@@ -1,3 +1,5 @@
+package Vehicle;
+
 public class Vehicle {
     private int vehicleId;
     private int seats;

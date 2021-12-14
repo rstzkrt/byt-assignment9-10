@@ -1,3 +1,5 @@
+package Devices;
+
 public class UserBilletDevice {
     private int id;
     private String type;
