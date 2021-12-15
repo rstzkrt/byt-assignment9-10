@@ -1,4 +1,4 @@
-package com.group14.billetsystem.person.discounts;
+package com.group14.billetsystem.user.discounts;
 
 public class StudentDiscount extends Discount{
 

@@ -1,6 +1,6 @@
-package Vehicle;
+package com.group14.billetsystem.Vehicle;
 
-public class Vehicle {
+public abstract class Vehicle {
     private int vehicleId;
     private int seats;
     private String route;

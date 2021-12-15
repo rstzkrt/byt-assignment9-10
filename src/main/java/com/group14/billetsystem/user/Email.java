@@ -1,4 +1,4 @@
-package com.group14.billetsystem.person;
+package com.group14.billetsystem.user;
 
 import java.util.Optional;
 import java.util.regex.Matcher;

@@ -1,12 +1,14 @@
-package com.group14.billetsystem.person;
+package com.group14.billetsystem.user;
 
-import com.group14.billetsystem.person.discounts.Discount;
+import com.group14.billetsystem.Devices.UserBilletDevice;
+import com.group14.billetsystem.payment.paymentMethods.PaymentMethod;
+import com.group14.billetsystem.user.discounts.Discount;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class Person {
+public class User {
     private final UUID id;
     private final String name;
     private final String surname;
@@ -15,8 +17,10 @@ public class Person {
     private Status status;
 
     private final Set<Discount> discounts = new HashSet<>();
+    private final Set<PaymentMethod> paymentMethods = new HashSet<>();
+    private final Set<UserBilletDevice> devices = new HashSet<>();
 
-    public Person(String name, String surname, LocalDate birthdate, Email email, Status status) {
+    public User(String name, String surname, LocalDate birthdate, Email email, Status status) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.surname = surname;
@@ -65,9 +69,16 @@ public class Person {
         return Collections.unmodifiableSet(discounts);
     }
 
-    public static Optional<Person> createPerson(String name, String surname, LocalDate birthdate, String email, Status status) {
+    public boolean addPaymentMethod(PaymentMethod paymentMethod){
+        return paymentMethods.add(paymentMethod);
+    }
+
+    public boolean addBilletDevice(UserBilletDevice device){
+        return devices.add(device);
+    }
+    public static Optional<User> createPerson(String name, String surname, LocalDate birthdate, String email, Status status) {
         if (validateName(name) && validateName(surname) && validateDate(birthdate) && validateEmail(email)){
-            return Optional.of(new Person(name,surname,birthdate,Email.getInstance(email).get(),status));
+            return Optional.of(new User(name,surname,birthdate,Email.getInstance(email).get(),status));
         }
         return Optional.empty();
     }
@@ -85,6 +96,7 @@ public class Person {
         final long years = birthdate.until(LocalDate.now(), ChronoUnit.YEARS);
         return years >= 7 && years <= 90;
     }
+
 
     private static boolean validateEmail(String email){
         return Email.validate(email);

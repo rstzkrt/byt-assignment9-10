@@ -1,4 +1,4 @@
-package Devices;
+package com.group14.billetsystem.Devices;
 
 public class UserBilletDevice {
     private int id;

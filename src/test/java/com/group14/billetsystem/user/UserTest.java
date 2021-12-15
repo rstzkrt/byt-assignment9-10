@@ -1,6 +1,5 @@
-package com.group14.billetsystem.person;
+package com.group14.billetsystem.user;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -9,7 +8,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PersonTest {
+class UserTest {
     private static final String GOOD_NAME = "Bolo";
     private static final String GOOD_SURNAME = "Test";
     private static final LocalDate GOOD_BIRTHDATE = LocalDate.of(1995, 8, 9);
@@ -18,9 +17,9 @@ class PersonTest {
 
     @Test
     public void shouldCreatePerson() {
-        Optional<Person> person = Person.createPerson(GOOD_NAME, GOOD_SURNAME, GOOD_BIRTHDATE, GOOD_EMAIL, Status.NORMAL);
+        Optional<User> person = User.createPerson(GOOD_NAME, GOOD_SURNAME, GOOD_BIRTHDATE, GOOD_EMAIL, Status.NORMAL);
         assertTrue(person.isPresent());
-        Person p = person.get();
+        User p = person.get();
         assertEquals(p.getName(), GOOD_NAME);
         assertEquals(p.getSurname(), GOOD_SURNAME);
         assertEquals(p.getBirthdate(), GOOD_BIRTHDATE);
@@ -31,7 +30,7 @@ class PersonTest {
     @Test
     public void shouldNotCreatePersonWithBadName() {
         String nullName = null;
-        Optional<Person> person = createPersonWithCustomName(nullName);
+        Optional<User> person = createPersonWithCustomName(nullName);
         assertFalse(person.isPresent());
 
         String emptyName = "";
@@ -59,7 +58,7 @@ class PersonTest {
     @Test
     public void shouldNotCreatePersonWithSurname() {
         String nullName = null;
-        Optional<Person> person = createPersonWithCustomSurname(nullName);
+        Optional<User> person = createPersonWithCustomSurname(nullName);
         assertFalse(person.isPresent());
 
         String emptyName = "";
@@ -86,7 +85,7 @@ class PersonTest {
     @Test
     public void shouldNotCreatePersonWithBadBirtDate() {
         LocalDate toOld = LocalDate.now().minus(91, ChronoUnit.YEARS);
-        Optional<Person> person = createPersonWithCustomBirthdate(toOld);
+        Optional<User> person = createPersonWithCustomBirthdate(toOld);
         assertFalse(person.isPresent());
         LocalDate toYoung = LocalDate.now().minus(6, ChronoUnit.YEARS);
         person = createPersonWithCustomBirthdate(toYoung);
@@ -97,15 +96,15 @@ class PersonTest {
     }
 
 
-    private static Optional<Person> createPersonWithCustomName(String name) {
-        return Person.createPerson(name, GOOD_SURNAME, GOOD_BIRTHDATE, GOOD_EMAIL, Status.NORMAL);
+    private static Optional<User> createPersonWithCustomName(String name) {
+        return User.createPerson(name, GOOD_SURNAME, GOOD_BIRTHDATE, GOOD_EMAIL, Status.NORMAL);
     }
 
-    private static Optional<Person> createPersonWithCustomSurname(String surname) {
-        return Person.createPerson(GOOD_NAME, surname, GOOD_BIRTHDATE, GOOD_EMAIL, Status.NORMAL);
+    private static Optional<User> createPersonWithCustomSurname(String surname) {
+        return User.createPerson(GOOD_NAME, surname, GOOD_BIRTHDATE, GOOD_EMAIL, Status.NORMAL);
     }
 
-    private static Optional<Person> createPersonWithCustomBirthdate(LocalDate localDate) {
-        return Person.createPerson(GOOD_NAME, GOOD_SURNAME, localDate, GOOD_EMAIL, Status.NORMAL);
+    private static Optional<User> createPersonWithCustomBirthdate(LocalDate localDate) {
+        return User.createPerson(GOOD_NAME, GOOD_SURNAME, localDate, GOOD_EMAIL, Status.NORMAL);
     }
 }
