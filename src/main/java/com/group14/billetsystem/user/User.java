@@ -1,6 +1,7 @@
 package com.group14.billetsystem.user;
 
 import com.group14.billetsystem.Devices.UserBilletDevice;
+import com.group14.billetsystem.payment.paymentMethods.PaymentHistory;
 import com.group14.billetsystem.payment.paymentMethods.PaymentMethod;
 import com.group14.billetsystem.user.discounts.Discount;
 
@@ -19,6 +20,9 @@ public class User {
     private final Set<Discount> discounts = new HashSet<>();
     private final Set<PaymentMethod> paymentMethods = new HashSet<>();
     private final Set<UserBilletDevice> devices = new HashSet<>();
+
+    //
+    private PaymentHistory paymentHistory;
 
     public User(String name, String surname, LocalDate birthdate, Email email, Status status) {
         this.id = UUID.randomUUID();
