@@ -10,6 +10,14 @@ public class UserBilletDevice {
     //
     private TravelHistory travelHistory;
 
+    public TravelHistory getTravelHistory() {
+        return travelHistory;
+    }
+
+    public void setTravelHistory(TravelHistory travelHistory) {
+        this.travelHistory = travelHistory;
+    }
+
     public UserBilletDevice() {
     }
 

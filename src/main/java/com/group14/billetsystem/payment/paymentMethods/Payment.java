@@ -14,6 +14,22 @@ public class Payment {
     private Date paymentDate;
     private PaymentHistory paymentHistory;
 
+    public Date getPaymentDate() {
+        return paymentDate;
+    }
+
+    public void setPaymentDate(Date paymentDate) {
+        this.paymentDate = paymentDate;
+    }
+
+    public PaymentHistory getPaymentHistory() {
+        return paymentHistory;
+    }
+
+    public void setPaymentHistory(PaymentHistory paymentHistory) {
+        this.paymentHistory = paymentHistory;
+    }
+
     public Payment(UserTravel travel) {
         this.travel = travel;
         amount = calculateAmount(travel);

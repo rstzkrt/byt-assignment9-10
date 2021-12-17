@@ -24,6 +24,14 @@ public class User {
     //
     private PaymentHistory paymentHistory;
 
+    public PaymentHistory getPaymentHistory() {
+        return paymentHistory;
+    }
+
+    public void setPaymentHistory(PaymentHistory paymentHistory) {
+        this.paymentHistory = paymentHistory;
+    }
+
     public User(String name, String surname, LocalDate birthdate, Email email, Status status) {
         this.id = UUID.randomUUID();
         this.name = name;

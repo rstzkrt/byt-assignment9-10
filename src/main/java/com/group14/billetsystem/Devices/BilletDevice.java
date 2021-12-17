@@ -20,6 +20,14 @@ public class BilletDevice {
 
     private TravelHistory travelHistory;
 
+    public TravelHistory getTravelHistory() {
+        return travelHistory;
+    }
+
+    public void setTravelHistory(TravelHistory travelHistory) {
+        this.travelHistory = travelHistory;
+    }
+
     public BilletDevice(int id, Vehicle vehicle) {
         this.vehicle = vehicle;
         this.id = id;
