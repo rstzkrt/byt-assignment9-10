@@ -1,8 +1,10 @@
 package com.group14.billetsystem.Devices;
 
 import com.group14.billetsystem.Vehicle.Vehicle;
+import com.group14.billetsystem.travel.TravelHistory;
 import com.group14.billetsystem.travel.UserTravel;
 
+import javax.sound.midi.Track;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +17,8 @@ public class BilletDevice {
     private final Set<UserTravel> presentDevices = new HashSet<>();
 
     private final Set<UserTravel> devicesThatLeft = new HashSet<>();
+
+    private TravelHistory travelHistory;
 
     public BilletDevice(int id, Vehicle vehicle) {
         this.vehicle = vehicle;

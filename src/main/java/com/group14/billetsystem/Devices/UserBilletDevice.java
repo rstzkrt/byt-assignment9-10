@@ -1,9 +1,14 @@
 package com.group14.billetsystem.Devices;
 
+import com.group14.billetsystem.travel.TravelHistory;
+
 public class UserBilletDevice {
     private int id;
     private String type;
     private double price;
+
+    //
+    private TravelHistory travelHistory;
 
     public UserBilletDevice() {
     }
