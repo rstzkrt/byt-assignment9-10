@@ -26,5 +26,39 @@ class CreditCardTest {
 	        
 		  
 	  }
+	  
+	  
+	  @Test
+	  	public void shouldNotAddCCWithBadNumber() {
+		  String nullCardNumber = null;
+		  Optional<CreditCard> cc = createCCwithCustomNumber(nullCardNumber);
+	      assertFalse(cc.isPresent());
+	      
+	      String emptyNumber = "";
+	      cc = createCCwithCustomNumber(emptyNumber);
+	      assertFalse(cc.isPresent());
 
+		  
+		  String notNumbers = "/^[a-zA-Z]+$/g";
+		  cc = createCCwithCustomNumber(nullCardNumber);
+	       assertFalse(cc.isPresent());
+
+
+		  
+		  
+	  }
+	  
+	 
+
+
+	private Optional<CreditCard> createCCwithCustomNumber(String nullCardNumber) {
+
+		return CreditCard.AddCC(nullCardNumber, cvcCode , expirationDate);
+	}
+	  
+	  
+	  
+	  
+	  
+	  
 }
