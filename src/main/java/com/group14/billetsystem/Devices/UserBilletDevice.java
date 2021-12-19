@@ -1,9 +1,14 @@
 package com.group14.billetsystem.Devices;
 
+import java.time.LocalDate;
+import java.util.Optional;
+import java.util.UUID;
+
+import com.group14.billetsystem.payment.paymentMethods.CreditCard;
 import com.group14.billetsystem.travel.TravelHistory;
 
 public class UserBilletDevice {
-    private int id;
+    private UUID id;
     private String type;
     private double price;
 
@@ -21,20 +26,17 @@ public class UserBilletDevice {
     public UserBilletDevice() {
     }
 
-    public UserBilletDevice(int id, String type, double price) {
-        this.id = id;
+    public UserBilletDevice(String type, double price) {
+    	this.id = UUID.randomUUID();
         this.type = type;
         this.price = price;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
+  
     public String getType() {
         return type;
     }
@@ -50,4 +52,23 @@ public class UserBilletDevice {
     public void setPrice(double price) {
         this.price = price;
     }
+    
+    
+    public static Optional<UserBilletDevice> createUBD(String type,  double price) {
+		if (validateType(type) && validatePrice(price) ){
+            return Optional.of(new UserBilletDevice(type, price));
+        }
+        return Optional.empty();		
+	}
+	
+	 private static boolean validateType(String type){
+	        return type != null && type.matches("[A-Z][a-z]{2,20}");
+	    }
+
+	   
+	  
+
+	    private static boolean validatePrice(double price){
+	        return price >10;
+	    }
 }
