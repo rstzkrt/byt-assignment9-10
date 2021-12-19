@@ -48,6 +48,40 @@ class UserBilletDeviceTest {
         String smallFirstLetter = "test";
         ubd = createDeviceWithCustomType(smallFirstLetter);
         assertFalse(ubd.isPresent());
+        
+        String notLetters = "^[0-9]";
+        ubd = createDeviceWithCustomType(notLetters);
+        assertFalse(ubd.isPresent());
+        
+	}
+	
+	
+	@Test
+	public void shouldNotCreateUserDBWithBadPrice() {
+		Double zeroPrice = 0.0;
+        Optional<UserBilletDevice> ubd = createDeviceWithCustomPrice(zeroPrice);
+        assertFalse(ubd.isPresent());
+        
+        Double tooSmallPrice=4.0;
+        ubd = createDeviceWithCustomPrice(tooSmallPrice);
+        if(tooSmallPrice<10.0) {
+            assertFalse(ubd.isPresent());
+
+        }
+        
+        Double tooBigPrice=20000.0;
+        ubd = createDeviceWithCustomPrice(tooSmallPrice);
+        if(tooBigPrice>1000.0) {
+            assertFalse(ubd.isPresent());
+
+        }
+       
+		
+	}
+	
+
+	private Optional<UserBilletDevice> createDeviceWithCustomPrice(Double zeroPrice) {
+		return UserBilletDevice.createUBD(type, zeroPrice);
 	}
 
 	private Optional<UserBilletDevice> createDeviceWithCustomType(String nullType) {
