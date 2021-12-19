@@ -48,7 +48,32 @@ class CreditCardTest {
 		  
 	  }
 	  
+	  @Test
+	  	public void shouldNotAddCCWithBadCVC() {
+		  String nullCVC =null;
+		  Optional<CreditCard> cc = createCCwithCustomCVC(nullCVC);
+		  assertFalse(cc.isPresent());
+		  
+		  String emptyCVC ="";
+		  cc = createCCwithCustomCVC(emptyCVC);
+		  assertFalse(cc.isPresent());
+		  
+		  String notNumbers = "/^[a-zA-Z]+$/g";
+		  cc = createCCwithCustomCVC(notNumbers);
+		  assertFalse(cc.isPresent());
+
+
+		  
+		  		
+		  
+	  }
+	  
 	 
+
+
+	private Optional<CreditCard> createCCwithCustomCVC(String nullCVC) {
+		return CreditCard.AddCC(cardNumber, nullCVC, expirationDate);
+	}
 
 
 	private Optional<CreditCard> createCCwithCustomNumber(String nullCardNumber) {
