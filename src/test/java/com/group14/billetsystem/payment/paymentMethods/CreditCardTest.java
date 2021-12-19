@@ -3,6 +3,7 @@ package com.group14.billetsystem.payment.paymentMethods;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -68,7 +69,25 @@ class CreditCardTest {
 		  
 	  }
 	  
+	  
+	  @Test
+	  	public void shouldNotAddWithBadED() {
+		  	LocalDate beforeNow = LocalDate.now().minus(3, ChronoUnit.YEARS);
+	        Optional<CreditCard> cc = createCCwithCustomED(beforeNow);
+	        assertFalse(cc.isPresent());
+	        LocalDate now = LocalDate.now();
+	        cc = createCCwithCustomED(now);
+	        assertFalse(cc.isPresent());
+		  
+		  
+	  }
+	  
 	 
+
+
+	private Optional<CreditCard> createCCwithCustomED(LocalDate nullED) {
+		return CreditCard.AddCC(cardNumber, cvcCode, nullED);
+	}
 
 
 	private Optional<CreditCard> createCCwithCustomCVC(String nullCVC) {
