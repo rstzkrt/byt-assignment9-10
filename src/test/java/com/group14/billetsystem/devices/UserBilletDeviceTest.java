@@ -22,5 +22,36 @@ class UserBilletDeviceTest {
         assertEquals(userbd.getPrice(), price);
  
 	}
+	
+	@Test
+	public void shouldNotCreateUserBDWithBadType() {
+		String nullType = null;
+        Optional<UserBilletDevice> ubd = createDeviceWithCustomType(nullType);
+        assertFalse(ubd.isPresent());
+
+        String emptyType = "";
+        ubd = createDeviceWithCustomType(emptyType);
+        assertFalse(ubd.isPresent());
+
+        String badLetters = "ęąĄĘ";
+        ubd = createDeviceWithCustomType(badLetters);
+        assertFalse(ubd.isPresent());
+
+        String toShort = "H";
+        ubd = createDeviceWithCustomType(toShort);
+        assertFalse(ubd.isPresent());
+
+        String toLong = "Omgiwanttosleepeverywhereandallthetime";
+        ubd = createDeviceWithCustomType(toLong);
+        assertFalse(ubd.isPresent());
+
+        String smallFirstLetter = "test";
+        ubd = createDeviceWithCustomType(smallFirstLetter);
+        assertFalse(ubd.isPresent());
+	}
+
+	private Optional<UserBilletDevice> createDeviceWithCustomType(String nullType) {
+		return UserBilletDevice.createUBD(nullType, price);
+	}
 
 }
